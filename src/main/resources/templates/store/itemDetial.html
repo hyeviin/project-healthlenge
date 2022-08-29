@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+	    <link rel="stylesheet" href="/css/store/detail.css">
+	    <script type="text/javascript" src="/js/likefunction.js"></script>
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h1>상품 디테일</h1>
+				<a href="/store">목록가기</a>
+			</section>
+			<div class="flex center">
+				<div th:if=${itemDetail.defImgUrl}>
+					<section class="imgs" th:style="|background-image: url(${itemDetail.defImgUrl});|"></section>
+				</div>
+				<form action="/payment/go/page" method="get">		
+					<ul class="flex column around">
+						<li>
+							<span>상품명</span>
+							<span class="name">[[${itemDetail.name}]]</span>
+						</li>
+						<li>
+							<span>가격</span>
+							<span id="price" th:text="${itemDetail.totalPrice}"></span>
+							<span>원</span>
+						</li>
+						<li>
+							<span>할인</span>
+							<span>[[${itemDetail.sale+itemDetail.unit}]]</span>
+						</li>
+						<li>
+							<span>수량</span>
+							<input name="itemCount" class="count" type="number" max="10" value="1">
+						</li>
+						<li class="flex between">
+							<input name="ino" type="hidden" th:value="${itemDetail.itemNo}">
+							<input name="email" id="user" type="hidden" th:value="${#authorization.expression('isAuthenticated()')}">
+							<p id="topic" style="display: none;">item</p>
+							<p class="no" style="display: none;" th:text="${itemDetail.itemNo}"></p>
+							<p class="email" style="display: none;" th:text="${#authorization.expression('isAuthenticated()')}"></p>
+							<button type="submit" class="item-btn">구매하기</button>
+							<div id="btn-like" class="item-btn flex column center acenter">찜하기</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div th:utext="${itemDetail.content}" class="item-detail__content"></div>
+		</div>
+	</main>
+</html>
+

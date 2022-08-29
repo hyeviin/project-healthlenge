@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/* 관리자 메뉴 크기 설정 */
+#top-menu {
+	width: 570px;
+}
+
+header>.wrap a {
+	font-size: 16px;
+}
+
+#top-menu > .wrap ul {
+	margin: 0;
+}
+
+/* 사이즈 정의 */
+main>.wrap {
+	width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+    padding: 0 20px;
+}
+
+main>.wrap > div >h2 {
+	font-size: 26px;
+	font-weight: 700;
+}
+
+main>.wrap > div > a {
+	font-size: 17px;
+}
+
+main div> form,
+main div> form > ul li input,
+main div> form > ul li select {
+	font-size: 1.7rem;
+}
+
+main #input-items{
+	width: 950px;
+}
+
+#input-items li > button {
+	box-sizing: border-box;
+    width: 100%;
+    padding: 0.7em 3em;
+    text-align: center;
+    background-color: #FB3E49;
+    color: white;
+    font-size: 1.4em;
+    margin-top: 50px;
+}
+
+.items-title > input{
+	width: 100%;
+    padding: 0.5em;
+    margin: 0.5em auto;
+}
+
+.items-category{
+	box-sizing: border-box;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.items-category > select {
+	flex: 3;
+	padding: 0.5em;
+}
+
+.items-category > select:not(:last-child) {
+	margin-right: 30px;
+}
+
+.item-sale{
+	margin: 0.5em;
+}
+
+.item-img__box {
+	margin-bottom: 0.5em;
+}
+
+.item-img__box > div > span {
+	margin-right: 40px;
+}
+
+
+/*상품 등록 페이지 css*/
+input[type=file] {
+	display: none;
+}
+
+input[type=file]+label {
+	display: block;
+	width: 100px;
+	height: 100px;
+	background-color: rgba(155, 155, 155, 0.2);
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 98px;
+	text-align: center;
+	border: 1px dotted rgba(155, 155, 155, 0.2);
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}

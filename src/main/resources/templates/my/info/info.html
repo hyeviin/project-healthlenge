@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{/layout/my/myCommon :: layout(~{::head}, ~{::div})}">
+	<head>
+		<title>정보수정 page</title>
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	    <link rel="stylesheet" href="/css/my/info.css">
+	</head>
+	<div class="faq-content">
+		<div class="flex column">
+			<section id="index-img">
+				<span class="material-icons index-img">account_circle</span>
+			</section>
+			<section id="index-info" class="flex column between">
+				<div>
+					<p sec:authentication="name">username</p>
+				</div>
+				<div class="flex around">
+					<section id="email-signup">
+						<form action="/my/infoChagne" method="post"> 
+							<ul>
+								<li class="flex around">
+									<p>닉네임</p>
+									<input type="text" th:value="${memInfo.nickName}" name="nickName">
+								</li>
+								<li class="flex around">
+									<p>한 줄 소개</p>
+									<input th:if="${memInfo.info}" type="text" th:value="${memInfo.info}" name="info">
+									<input th:unless="${memInfo.info}" type="text" th:value="소개를 입력해주세요" name="info">
+								</li>
+								<li class="flex around">
+									<label th:for="|cb-isShow-${count}|" class="flex acenter ">회원탈퇴
+										<input th:id="|cb-isShow-${count}|" class="cb-isShow" type="checkbox" checked="checked" th:checked="${memInfo.deleted}">
+									</label>
+								</li>
+								<li>
+									<input type="hidden" id="no" th:value="${memInfo.mno}" name="mno">
+									<input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}" >
+									<button type="submit">정보변경</button>
+								</li>
+							</ul>
+							<script type="text/javascript">
+							$(function(){
+								$(".cb-isShow").change(function(){
+									alert("정말 탈퇴하겠습니까?");
+									let no= $(this).parents("ul").find("#no").val();
+									let isCheck = ($(this).prop("checked"));
+									console.log(no);
+									console.log(isCheck);
+									let token = $("meta[name='_csrf']").attr("content");
+						    		let header = $("meta[name='_csrf_header']").attr("content");
+						    			
+						    		$.ajax({
+						    			beforeSend:function(xhr){xhr.setRequestHeader(header, token);},
+										url:"/common/member/" + no + "/deleted",
+										type:"post",
+										data:{"isCheck":isCheck},
+										success:function(result){
+											location.replace("/login");
+										}
+									});
+									
+								});
+							});
+							</script>
+						</form>
+					</section>
+				</div>
+			</section>
+		</div>
+	</div>
+</html>

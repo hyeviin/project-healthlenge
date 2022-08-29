@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
+<head>
+	<title>첼스토어</title>
+    <link rel="stylesheet" href="/css/store/index.css">
+    <script type="text/javascript">
+		$(function(){
+			$("#board-index__category>li").click(getBoard);
+		});
+		
+		function getBoard(){
+			$("#item-index__defList").hide();
+			let divno= $(this).index();
+			let email= $("#user").val();
+			console.log(divno);
+			console.log(email);
+			
+			let url= "/common/store/" + divno;
+			
+			$.get(url, //url
+				{ email: $("#user").val()},
+				function(result){//성공시 실행함
+					$("#board-index__list").html(result);
+			});
+		}
+    </script>
+</head>
+<main>
+	<h1>메인컨텐츠</h1>
+	<div class="wrap">
+		<section id="category">
+			<h1>카테고리</h1>
+			<div id="category-items" class="wrap flex center">
+				<ul id="board-index__category" class="flex around acenter">
+					<li th:each="topics : ${T(khv.healthlenge.domain.entity.items.Category).values()}" class="flex column center">
+						<span>[[${topics.toString}]]</span>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="flex column center">
+						<input id="user" type="hidden" th:value="${#authentication.principal.email}">
+						<span>❤</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<h1>카테고리 목록</h1>
+			<section id="item-index__defList">
+				<h1>처음 목록</h1>
+				<div th:each="dto : ${storeList}" class="flex around">
+					<a th:href="|/common/store/item/user/${dto.itmeNo}|" class="items-a flex column">
+						<img class="item-imgs" alt="이미지" th:src="${dto.fileUrl}">
+						<section class="text">
+							<p class="item-title">[[${dto.name}]]</p>
+							<div class="flex">
+								<p class="item-sale" th:text="${dto.sale}+${dto.unit}">[[${dto.sale}]]</p>
+								<p class="item-totalPrice" th:text="${dto.totalPrice}+원"></p>
+								<del><p class="item-price" th:text="${dto.price}+원"></p></del>
+							</div>
+						</section>
+					</a>
+				</div>
+			</section>
+			<section id="board-index__list">
+				<h1>클릭시 목록</h1>
+			</section>
+		</section>
+	</div>
+</main>
+</html>

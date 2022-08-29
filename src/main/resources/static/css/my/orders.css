@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+
+.faq-content {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+.faq-content > div{
+	width: 30em;
+    border: 1px solid;
+    border-radius: 0.7em;
+    margin: 0 auto;
+    padding: 1em;
+    margin-right: 0.5em;
+}
+
+.faq-content > div > section:first-child {
+	flex: 3;
+}
+.faq-content > div > section:not(:first-child) {
+	flex: 2;
+}
+
+#index-img {
+	position: relative;
+}
+
+.index-img {
+	position: absolute;
+    left: 25%;
+    bottom: -0.2em;
+    border-radius: 100%;
+    font-size: 15em;
+    color: #FF4343;
+}
+
+#index-info > div,
+.index-text { 
+	text-align: center;
+	color: #c0c0c0 !important;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+
+.index-text {
+    width: 30em;
+    display: block;
+    font-size: 14px;
+}
+
+#index-info > div:first-child {
+	padding-top: 7em;
+}
+
+#index-info > div:first-child > p:first-child {
+	margin-bottom: 1em;
+}
+
+#index-info > div:last-child {
+	margin: 2em;
+	padding-top: 2em;
+	border-top: 1px solid #ebebeb;
+}
+
+.order-img {
+	height: 100px; 
+	width: 100px;
+	border-radius: 0.3em;
+}
+
+.order-title {
+	margin-bottom: 0.3em;
+}
+
+.order-imgbox {
+	margin-bottom: 0.7em;
+}
+
+#btn-buyDone {
+	padding: 0.7em;
+    border: 1px solid #b5b9b5;
+    border-radius: 0.4em;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;   
+}
+
+.order-mainBox {
+	height: 210px;
+}

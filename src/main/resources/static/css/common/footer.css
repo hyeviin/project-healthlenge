@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/* 메인영역과 간격설정 */
+footer{
+	padding-top: 80px;
+	padding-bottom: 100px;
+	background-color: #222222;
+	color: white;
+	font-weight: 500;
+}
+
+/* 소셜아이콘 */
+#sns {
+	margin-right: 50px;
+}
+
+#sns>ul li img {
+	width: 40px;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    height: 40px;
+    margin-right: 7px;
+}
+
+/* li간 간격조정 */
+footer li {
+	margin-bottom: 3px;
+}
+#com-info>ul li:last-child {
+	margin-top: 25px;
+	font-weight: 600;
+}
+
+/* 폰트굵기 */
+#service>ul li a {
+	font-weight: 600;
+	color: white;
+}
+
+#service>ul li a:hover {
+	color: #FF4243;
+}

@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* 관리자 메뉴 크기 설정 */
+#top-menu {
+	width: 570px;
+}
+main > .wrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.board-container {
+	padding: 0 20px;
+}
+
+.board-items {
+	margin-bottom: 20px;
+}
+
+.imgs {
+	width: 300px;
+	height: 300px;
+	border-radius: 15px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-right: 70px;
+}
+
+.title {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.text {
+	font-size: 1.3rem;
+	width: 650px;
+}
+
+.text > div > span {
+	margin-right: 15px;
+}
+
+.text input[type="checkbox"] {
+	width: 25px;
+    height: 25px;
+    border: 1px solid;
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+.text > div:last-child {
+	margin-top: 25px;
+}
+
+.text > div > button:first-child  {
+	margin-right: 10px;
+}
+
+
+.text > div > a{
+	margin-right: 50px;
+}
+
+.board-btn {
+	width: 300px;
+	border: 1px solid;
+    padding: 10px 0;
+    text-align: center;
+}
+

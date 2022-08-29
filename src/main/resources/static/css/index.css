@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+header {
+	border: none;
+}
+
+/* 가운데 정렬 */
+main>.wrap > section:not(:first-child)  {
+	width: 1200px;
+	margin: 50px auto;
+}
+
+
+/* 슬로건 */
+/*  사이즈 정의  */
+#slogan{
+	background-color: #F7F7F9;
+}
+#slogan>.wrap {
+	width:1200px;
+	margin: 0 auto;
+	height: 450px;
+	padding: 30px 0;
+}
+/*  글씨  */
+/*   공간   */
+#slogan>.wrap .letter p:first-child{
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1.75
+}
+#slogan>.wrap .letter p:first-child span{
+	color: #FF4343;
+}
+/*   소통해보세요   */
+#slogan>.wrap .letter p:nth-child(2){
+	font-size: 1em;
+	line-height: 1.5;
+	color: #a6a8aa;
+}
+/*   버튼   */
+#slogan>.wrap .letter button {
+	background-color: #393c4b;
+	color: white;
+	cursor: pointer;
+	padding: 0.75rem 1.5rem;
+	margin-top: 3rem;
+	font-weight: 700;
+	border-radius: 4px;
+}
+/*//////////////////  자동슬라이드  ///////////////////*/
+/*//////////// 이벤트 녀석들  /////////////*/
+#event{
+	position: relative;
+	width: 800px;
+	overflow: hidden;
+}
+#event .imgs{
+	position: relative;
+	width: 1610px;
+}
+
+#event .imgs li div{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display:block;
+	width: 800px;
+	height: 340px;
+}
+
+#event .imgs li:last-child{
+	margin-right: 0;
+}
+
+
+
+/* 카테고리 */
+/* 사이즈 */
+#category > .wrap {
+	height: 170px;
+	padding: 30px 0;
+	
+}
+
+#category-items ul {
+	width: 1000px;
+}
+
+#category-items div {
+	width: 60px;
+	height: 60px;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*카테고리->a*/
+#category-items a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 15px;
+}
+/*카테고리->span*/
+#category-items span {
+	margin-top: 7px;
+}
+
+/* 판매상품들 */
+
+
+/* 인기있는 친구들, 이벤트친구들 */
+#topic {
+	width:1200px;
+	padding: 15px 0;
+}
+
+#topic > .wrap >section:last-child{
+	margin-top: 60px;
+}
+
+#topic > .wrap > section > p {
+	font-size: 2.5em;
+	font-weight: 900;
+}
+
+.bitem-img {
+	width: 220px;
+	height: 220px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	border-radius: 10px;
+}
+
+.status {
+	position: absolute;
+    bottom: 5%;
+    background-color: white;
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    left: 5%;
+    font-weight: 800;
+}
+
+.text {
+	font-size: 1.2rem;
+	width: 260px;
+}
+
+#items-items > .wrap > section{
+	width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.items-a{
+	width: 350px;
+}
+
+.item-imgs {
+	width: 250px;
+	height: 250px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	border-radius: 10px;
+}

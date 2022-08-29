@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/admin/headerFooter :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+	    <link rel="stylesheet" href="/css/admin/boardlist.css">
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h2>챌린지 자세히 보기</h2>
+				<a href="/admin/item">목록가기</a>
+			</section>
+			<div style="display: none;">[[${itemDetail.itemNo}]]</div>
+			<div class="flex">
+				<div th:if=${itemDetail.defImgUrl}>
+					<section class="imgs" th:style="|background-image: url(${itemDetail.defImgUrl});|"></section>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<th>상품명</th>
+							<td>[[${itemDetail.name}]]</td>
+						</tr>
+						<tr>
+							<th>가격</th>
+						<td>[[${itemDetail.price}]]</td>
+						</tr>
+						<tr>
+							<th>할인</th>
+							<td>[[${itemDetail.sale}]]</td>
+						</tr>
+						<tr>
+							<th>수량</th>
+							<td><input type="number" min="1" max="10"></td>
+						</tr>
+						<tr>
+							<th>수량</th>
+							<td><input type="number" min="1" max="10"></td>
+						</tr>
+						
+						
+					</tbody>
+				</table>
+			</div>
+			<div th:utext="${itemDetail.content}"></div>
+		</div>
+	</main>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{/layout/my/myCommon :: layout(~{::head}, ~{::div})}">
+<head>
+	<title>마이페이지</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/css/my/index.css">
+</head>
+<div class="faq-content">
+	<div class="flex column">
+		<section id="index-img">
+			<span class="material-icons index-img">account_circle</span>
+		</section>
+		<section id="index-info" class="flex column between">
+			<div>
+				<p th:text="${memInfo.nickName}">username</p>
+				<p th:if="${memInfo.info}">[[${memInfo.info}]]</p>
+				<p th:unless="${memInfo.info}">한 줄 소개가 없습니다.</p>
+			</div>
+			<div class="flex around">
+			<!--  	<div>
+					<p>예치금</p>
+					<p>30,000</p>
+				</div>
+				<div>
+					<p>상금</p>
+					<p>2,000</p>
+				</div> -->
+				<div>
+					<p>포인트</p>
+					<p>154,113</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<a href="/my/infoChagne" class="index-text">정보변경</a>
+</div>
+</html>

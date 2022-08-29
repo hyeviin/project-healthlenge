@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.flex{display: flex;}
+.row{flex-direction: row;}
+.column{flex-direction: column;}
+.center{justify-content: center;}
+.acenter{align-items: center;}
+.between{justify-content: space-between;}
+.around{justify-content: space-around;}
+.start{justify-content: flex-start;}
+.end{justify-content: flex-end;}
+
+
+/*  adminPart  */
+.table-tilte {
+	font-size: 1.1rem;
+	font-weight: 700;
+	padding: 20px 0;
+	line-height: 60px;
+}

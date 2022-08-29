@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+/* 높이 사이즈 */
+header {
+	padding: 10px 0;
+	border-bottom: 1px solid #98999a;
+}
+
+
+/* a태그설정 */
+header>.wrap a {
+	font-size: 1rem;
+	font-weight: 600;
+}
+#top-menu>.wrap ul li a {
+	color: #98999a;
+}
+
+/* 로고설정 */
+/*  logo section 설정  */
+header #top-logo {
+	align-items: center;
+}
+
+/*  logo-img size  */
+#top-logo > .wrap > a > img{
+	width: 130px;
+}
+
+/*  로고 간격  */
+#top-logo {
+	margin-right: 15px;
+}
+
+/* top-menu */
+/*  사이즈  */
+#top-menu {
+	width: 400px;
+}
+#top-menu>.wrap {
+	width: 100%;
+}
+
+/* user-menu */
+/*  li설정  */
+#user-menu>.wrap li {
+	margin-right: 10px;
+}
+#user-menu>.wrap ul li {
+	padding: 5px 10px;
+	border: 1px solid #98999a;
+	border-radius: 2.5px;
+}
+#user-menu>.wrap ul li:last-child {
+	background-color: #FF4243;
+	border-color: #FF4243;
+}
+#user-menu>.wrap ul li:last-child, 
+#user-menu>.wrap ul li:last-child a {
+	color: white;
+}
+
+#btn-logout{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+}

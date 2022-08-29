@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/admin/headerFooter :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+	    <link rel="stylesheet" href="/css/admin/boardlist.css">
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h2>챌린지 리스트</h2>
+				<a href="/admin/challenge/write">등록</a>
+			</section>
+			<section class="board-container">
+				<div class="board-items flex center acenter" th:each="dto, i : ${challenge}">
+					<section class="imgs" th:style="|background-image: url(${dto.fileUrl});|"></section>
+					<section class="text">
+						<p class="bno" style="display: none;">[[${dto.chNo}]]</p>
+						<p class="title">[[${dto.title}]]</p>
+						<div class="flex start">
+							<span class="status">[[${dto.status}]]</span>
+						</div>
+						<p class="date">[[${dto.date}]]</p>
+						<div class="flex">
+							<a th:href="|/admin/challenge/${dto.chNo}|"><button type="button" class="board-btn">자세히</button></a>
+							<button type="button" class="del-btn board-btn">삭제</button>
+						</div>
+					</section>
+				</div>
+				<!-- 홈페이지에 보여질 것 인지 체크 -->
+				<script type="text/javascript">
+				$(function(){	
+					$(function(){
+						$(".del-btn").click(function(){
+							var no=$(this).parents(".text").find(".bno").text();
+							var token = $("meta[name='_csrf']").attr("content");
+				    		var header = $("meta[name='_csrf_header']").attr("content");
+				    			
+				    		$.ajax({
+				    			beforeSend:function(xhr){xhr.setRequestHeader(header, token);},
+								url:"/admin/challenge/" + no + "/delect",
+								type:"post",
+								success:function(result){
+									if(result){
+										let url= "/admin/challenge";
+										location.replace(url);
+										alert("삭제완료");
+									}
+								}
+							});
+				    			
+						});
+					});
+				});
+				</script>
+			</section>
+		</div>
+	</main>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
+<head>
+    <link rel="stylesheet" href="/css/index.css">
+	<script type="text/javascript" src="/js/index.js"></script>
+</head>
+<main>
+	<h1>메인컨텐츠</h1>
+	<div class="wrap">
+		<section id="slogan">
+			<h1>슬로건</h1>
+			<div class="wrap flex acenter around">
+				<div class="letter">
+					<p>
+						나의 좋은 습관이<br>
+						건강한 삶과 원동력이 되는 공간<br> 						
+						<span>Healthlenge</span>
+					</p>
+					<p>
+						선정한 목표를 달성하고<br>
+						인증한 사진을 올리며 다른 도전자분들과 소통해보세요.
+					</p>
+					<a href="/common/challenge"><button>Healthlenge start</button></a>
+				</div>
+				<div id="event">
+					이벤트 친구들이 들어갑니다 -> 관리자 페이지에서 설정
+			    </div>
+			</div>
+		</section>
+		<section id="items">
+			<h1>판매상품</h1>
+			<div id="items-items" class="wrap flex center">
+				상품 친구들이 들어갑니다 -> 관리자 페이지에서 설정
+			</div>
+		</section>
+		<section id="category">
+			<h1>카테고리</h1>
+			<div id="category-items" class="wrap flex center">
+				카테고리 친구들이 들어갑니다 -> 관리자 페이지에서 설정
+			</div>
+		</section>
+		<section id="topic">
+			topic친구들이 들어갑니다 -> 나중에 관리자페이지에서 설정하도록합니다
+		</section>
+	</div>
+</main>
+</html>

@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+	    <link rel="stylesheet" href="/css/board/detail.css">
+		<script type="text/javascript" src="/js/likefunction.js"></script>
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h2>챌린지 자세히 보기</h2>
+				<a href="/challenge">목록가기</a>
+			</section>
+			<div class="flex">
+				<div th:if=${boardDetail.file}>
+					<section class="imgs" th:style="|background-image: url(${boardDetail.file.url+boardDetail.file.orgName});|"></section>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<th>제목</th>
+							<td>[[${boardDetail.title}]]</td>
+						</tr>
+						<tr>
+							<th>카테고리</th>
+						<td>[[${boardDetail.topic}]]</td>
+						</tr>
+						<tr>
+							<th>시작날짜</th>
+							<td>시작하는 날짜가 들어갑니더</td>
+						</tr>
+						<tr>
+							<th>참여인원</th>
+							<td>참여하는 인원이 들어갑니더</td>
+						</tr>
+						<tr sec:authorize="isAuthenticated()">
+							<th><button id="btn-like" type="button" class="challenge-btn">좋아요</button></th>
+							<td>
+								<button id="in-challenge" type="button" class="challenge-btn">참여하기</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="no" style="display: none;">[[${boardDetail.boardNo}]]</div>
+				<div sec:authorize="isAuthenticated()" class="email" style="display: none;">[[${#authentication.principal.email}]]</div>
+				<div id="topic" style="display: none;">challenge</div>
+			</div>
+			<div th:utext="${boardDetail.content}"></div>
+		</div>
+	</main>
+</html>
+

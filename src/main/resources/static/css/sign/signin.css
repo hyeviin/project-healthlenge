@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+/* 가운데 정렬&사이즈 정의 */
+main { 
+	padding: 50px; 
+}
+main > .wrap section {
+	width: 350px;
+	margin: 0 auto;
+}
+
+
+/*  타이틀 설정  */
+h2 {
+	font-size: .875rem;
+	color: rgb(166, 168, 170);
+	margin-bottom: 15px;
+}
+h2::after {
+	content: " ";
+	flex: 1 1;
+	height: 0.5px;
+	background-color: #e7e9eb;
+}
+
+
+/* 공통 설정 */
+/*  사이 간격  */
+#social-signup,
+#email-signup>form ul li:nth-child(3){
+	margin-bottom: 45px;
+}
+
+/*  li설정  */
+#social-signup>ul li,
+#email-signup>form ul li {
+	border: 1px solid #e7e9eb;
+	width: 100%;
+	text-align: center;
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+#email-signup>form ul li > div {
+	text-align: left;
+	color: #98999a;
+}
+
+
+/* 소셜 로그인 설정 */
+/*  li 설정  */
+#social-signup>ul li {
+	padding: 25px 15px;
+}
+
+/*  버튼 설정  */
+#social-signup>ul li>a {
+	width: 300px;
+	text-decoration: none;
+	color: #4D4F50;
+	font-weight: 500;
+}
+#social-signup>ul li>a span {
+	padding-left: 20px;
+}
+
+/*  이미지 사이즈 설정  */
+#social-signup>ul li img {
+	width: 24px;
+	margin-left: 15px;
+}
+
+/*  input 설정  */
+#email-signup>form ul li input {
+	border: none;
+	color: #98999a;
+	font-weight: 600;
+	padding-top: 5px;
+}
+#email-signup>form ul li input:focus  {
+	border: none;
+}
+
+/*  button 설정  */
+#email-signup>form ul li:last-child {
+	display: flex;
+	justify-content: center;
+	background-color: #FF4343;
+}
+#email-signup>form ul li:last-child button {
+	color: white;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+/* error */
+.error {
+	color: red;
+	font-weight: 700;
+	text-align: center;
+	padding: 5px 0;
+}
+
+#email-signup>form ul li:nth-child(3)> a {
+	color: #808080;
+}
+#email-signup>form ul li:nth-child(3) {
+	border: none;
+	padding: 0;
+}
