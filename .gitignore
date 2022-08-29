@@ -3,6 +3,11 @@
 
 #khv
 .DS_Store
+HELP.md
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
 
 ### Eclipse ###
 .metadata
