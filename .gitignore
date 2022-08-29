@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/gradle,eclipse,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=gradle,eclipse,java
 
+#khv
+.DS_Store
+
 ### Eclipse ###
 .metadata
 bin/
