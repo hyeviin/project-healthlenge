@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<ul class="flex around acenter">
+	<li th:each="dto, i : ${categorys}">
+		<a th:href="|/board/${i.count-1}|" class="flex">
+			<div th:style="|background-image: url(${dto.url+dto.orgName});|"></div>
+			<span>[[${dto.title}]]</span>
+		</a>
+	</li>
+</ul>
+</html>

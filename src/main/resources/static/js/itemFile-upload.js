@@ -30,7 +30,7 @@ function fileUpload(){
 	
 	$.ajax({
 		beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
-		url:"/admin/tempFile",
+		url:"/admin/item/tempFile",
 		type:"post",
 		data: data,
 		contentType: false,

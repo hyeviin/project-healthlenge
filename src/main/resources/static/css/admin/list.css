@@ -1,8 +1,4 @@
 @charset "UTF-8";
-/* 관리자 메뉴 크기 설정 */
-#top-menu {
-	width: 570px;
-}
 /*  input->checkbox  */
 input[type="checkbox"]{
 	width: 25px;

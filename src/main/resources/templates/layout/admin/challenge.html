@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="wrap">
+	<section>
+		<h1>topic1</h1>
+		<p>[[${topic1.get(0).getTopic()}]]</p>
+		<div class="flex around">
+			<div class="board-items flex column center acenter" th:each="dto, i : ${topic1}">
+				<p style="display: none;">[[${dto.boardNo}]]</p>
+				<section class="bitem-img" th:style="|background-image: url(${dto.url+dto.orgName});|">
+					<span class="status">[[${dto.status}]]</span>
+				</section>
+				<section class="text">
+					<p class="title">[[${dto.title}]]</p>
+				</section>
+			</div>
+		</div>
+	</section>
+	<section>
+		<h1>topic2</h1>
+		<p>[[${topic2.get(0).getTopic()}]]</p>
+		<div class="flex around">
+			<div class="board-items flex column center acenter" th:each="dto, i : ${topic2}">
+				<p style="display: none;">[[${dto.boardNo}]]</p>
+				<section class="bitem-img" th:style="|background-image: url(${dto.url+dto.orgName});|">
+					<span class="status">[[${dto.status}]]</span>
+				</section>
+				<section class="text">
+					<p class="title">[[${dto.title}]]</p>
+				</section>
+			</div>
+		</div>
+	</section>
+</div>
+</html>

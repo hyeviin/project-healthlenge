@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="wrap">
+	<section class="flex">
+		<div class="board-items" th:each="dto: ${items}">
+			<a th:href="|/admin/item/user/${dto.itmeNo}|" class="items-a flex column acenter">
+				<img class="item-imgs" alt="이미지" th:src="${dto.fileUrl}">
+				<section class="text">
+					<p class="title">[[${dto.name}]]</p>
+					<div class="flex around">
+						<p class="title" th:text="${dto.sale}+${dto.unit}">[[${dto.sale}]]</p>
+						<del><p class="title" th:text="${dto.price}+원"></p></del>
+						<p class="title" th:text="${dto.totalPrice}+원"></p>
+					</div>
+				</section>
+			</a>
+		</div>
+	</section>
+</div>
+</html>

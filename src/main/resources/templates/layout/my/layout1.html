@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:fragment="layout(head, div)" >
+	<head>
+	    <meta name="_csrf" th:content="${_csrf.token}"/>
+		<!-- default header name is X-CSRF-TOKEN -->
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	    <!-- 공통적용할 css -->
+	    <link rel="stylesheet" href="/css/common/reset.css">
+	    <link rel="stylesheet" href="/css/common/common.css">
+	    <link rel="stylesheet" href="/css/common/header.css">
+	    <link rel="stylesheet" href="/css/common/footer.css">
+	    <link rel="stylesheet" href="/css/my/layout.css">
+	    <!-- favicon -->
+	    <link rel="icon"  href="/favicon.png"/>
+		<link rel = "shortcut icon"href = "/image/logo/favicon.ico"/>
+	    <!-- summernote css/js -->
+	    <th:block th:replace="${head}">page에서 설정한 head정보가 삽입되요</th:block>
+	</head>
+	<body>
+	    <header>
+	    	<h1>상단영역</h1>
+	    	<div class="wrap flex between">
+	    		<div class="flex">
+	    			<section id="top-logo" class="flex">
+	    			<h1>로고</h1>
+	    			<div class="wrap">
+	    				<a href="/" class="flex"><img alt="Healthlenge" src="/images/logo/logo.png"></a>
+	    			</div>
+		    		</section>
+		    		<nav id="top-menu" class="flex acenter">
+		    			<h1>메뉴</h1>
+		    			<div class="wrap">
+		    				<ul class="flex around">
+		    					<li><a href="/challenge">챌린지</a></li>
+		    					<li><a href="#">인증</a></li>
+		    					<li><a href="/store">헬스토어</a></li>
+		    					<li><a href="#">검색</a></li>
+		    					<li sec:authorize="hasRole('ROLE_ADMIN')">
+		    						<a href="/admin">관리자</a>
+		    					</li>
+		    				</ul>
+		    			</div>
+		    		</nav>
+	    		</div>
+	    		<section id="user-menu" class="flex acenter">
+	    			<h1>유저메뉴</h1>
+	    			<div class="wrap">
+	    				<ul class="flex" >
+	    					<!-- 로그인하지 않았을때 -->
+	    					<li sec:authorize="isAnonymous()"><a href="/loginPage">로그인</a></li>
+	    					<li sec:authorize="isAnonymous()"><a href="/common/signup">회원가입</a></li>
+	    					<!-- 로그인했을 때 -->
+	    					<li sec:authorize="isAuthenticated()"><a href="#">알림</a></li>
+	    					<li sec:authorize="isAuthenticated()">
+	    						<a href="#"><span sec:authentication="name">username</span></a>
+	    					</li>
+	    					<li sec:authorize="isAuthenticated()"><a href="/my/myIndex">내 열정 확인</a></li>
+	    					<li sec:authorize="isAuthenticated()">
+	    						<input type="hidden" th:value="${#authentication.principal.name}">
+    							<button id="btn-logout">로그아웃</button>
+	    					</li>
+	    				</ul>
+	    			</div>
+	    		</section>
+	    		<script type="text/javascript">
+    			$(function () {
+    				$("#btn-logout").click(function(){
+    					var token = $("meta[name='_csrf']").attr("content");
+    	    			var header = $("meta[name='_csrf_header']").attr("content");
+    	    			
+    	    			$.ajax({
+    	    				beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+    	    				url:"/logout",
+    	    				type:"post",
+    	    				success:function(){
+    	    					location.href="/";
+    	    				}
+    	    			});
+    				});
+    			});
+    		</script>
+	    	</div>
+	    </header>
+	    <main>
+	    	<h1>메인영역</h1>
+			<div class="wrap flex">
+				<section>
+					<aside>
+						<ul class="cus-menu">
+							<li><a href="/my/myIndex">계정설정</a></li>
+							<li><a href="/customer">챌린지 기록보기</a></li>
+							<li><a href="/my/order/list">주문내역</a></li>
+							<li><a href="/customer">성취기록보기</a></li>
+							<li>
+								<a href="/customer">문의하기</a>
+								<ul class="faq-menu_menu">
+									<li>자주물어보는질문</li>
+								   	<li>방식/규칙</li>
+								    <li>기타</li>
+								    <li>참가비/환급/상금</li>
+								    <li>하트/옐로우/레드카드</li>
+								    <li>회원가입 및 탈퇴</li>
+								   	<li>개설</li>
+								    <li>기능/오류</li>
+								   	 <li>헬린저스 소개</li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="faq-content" th:replace="${div}">
+					내용물 바꿔야하는데
+				</section>
+			</div>
+	    </main>
+	    <footer>
+	    	<h1>하단영역</h1>
+	    	<div class="wrap flex around">
+	    		<section id="com-info">
+	    			<h1>회사정보</h1>
+	    			<ul>
+	    				<li>(주)뜬끔상상포 | 90-980-1130</li>
+	    				<li>서울 노원구 상계로3길 21, 화일빌딩 3층 303호_강의실</li>
+	    				<li>사업자등록번호: 980-99-30311</li>
+	    				<li>통신판매업신고: 1999-서울중랑-03117</li>
+	    				<li>대표: 김혜빈 | 개인정보책임자: 김헤빈</li>
+	    				<li>이메일: vveny113@gmail.com</li>
+	    				<li>Copyright &copy; Coding Corp. All Rights Reserved.</li>
+	    			</ul>
+	    		</section>
+	    		<section class="flex">
+	    			<div id="sns">
+	    				<h1>SNS</h1>
+	    				<ul class="flex">
+	    					<li><a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="인스타"></a></li>
+	    					<li><a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="깃허브"></a></li>
+	    					<li><a href="#"><img src="/images/logo/blog.svg" alt="블로그"></a></li>
+	    				</ul>
+	    			</div>
+	    			<div id="service">
+	    				<h1>개인정보처리방침</h1>
+	    				<ul>
+	    					<li><a href="#">이용약관</a></li>
+	    					<li><a href="#">개인정보 처리방침</a></li>
+	    				</ul>
+	    			</div>
+	    		</section>
+	    	</div>
+	    </footer>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/admin/layout1 :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+	    <link rel="stylesheet" href="/css/admin/boardlist.css">
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h2>챌린지 자세히 보기</h2>
+				<a href="/admin/challenge">목록가기</a>
+			</section>
+			<div style="display: none;">[[${boardDetail.boardNo}]]</div>
+			<div class="flex">
+				<div th:if=${boardDetail.file}>
+					<section class="imgs" th:style="|background-image: url(${boardDetail.file.url+boardDetail.file.orgName});|"></section>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<th>제목</th>
+							<td>[[${boardDetail.title}]]</td>
+						</tr>
+						<tr>
+							<th>카테고리</th>
+						<td>[[${boardDetail.topic}]]</td>
+						</tr>
+						<tr>
+							<th>시작날짜</th>
+							<td>시작하는 날짜가 들어갑니더</td>
+						</tr>
+						<tr>
+							<th>참여인원</th>
+							<td>참여하는 인원이 들어갑니더</td>
+						</tr>
+	
+					</tbody>
+				</table>
+			</div>
+			<div th:utext="${boardDetail.content}"></div>
+		</div>
+	</main>
+</html>
+

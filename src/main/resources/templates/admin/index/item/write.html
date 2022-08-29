@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/admin/layout1 :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>상품 등록</title>
+	    <!-- include summernote css/js -->
+	   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- include summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+		<script src="/js/my-summernote.js"></script>
+		<script src="/js/itemFile-upload.js"></script>
+		<style type="text/css">
+			label{
+			display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="/css/admin/write.css">
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<div class="table-tilte flex between">
+				<h2>상품 등록</h2>
+				<a href="/admin/item">돌아가기</a>
+			</div>
+			<form action="/admin/item/visuals" method="post" enctype="multipart/form-data" class="flex center">
+		 	<!-- 파일전송에는 enctype="multipart/form-data" 가 필요해요 -->
+				<ul id="input-items">
+					<li class="items-title"><input type="text" name="name" placeholder="상품명"></li>
+					<li class="flex around">
+						<div class="items-title flex">
+							<select name="category" class="item-sale">
+								<option th:each="categories : ${T(khv.healthlenge.domain.entity.items.Category).values()}"
+										th:value="${categories}" th:text="${categories.name}"></option>
+							</select>
+						</div>
+						<div class="items-title flex"><input type="text" name="price" placeholder="판매가격"></div>
+						<div class="items-title flex">
+							<input type="text" name="sale" placeholder="할인가격">
+							<select name="rate" class="item-sale">
+								<option value="false">원</option>
+								<option	value="true">%</option>
+							</select>
+						</div>
+					</li>
+					<li class="items-title"><input type="text" name="stock" placeholder="재고수량"></li>
+					<li class="flex acenter between item-img__box">
+						<div class="flex acenter">
+							<span>대표이미지</span>
+							<input type="file" id="defImg" name="defImg" class="item-fileInput">
+							<label for="defImg">+</label>
+							<input type="hidden" name="defImgName">
+						</div>
+						<div class="flex acenter">
+							<span>추가이미지</span>
+							<input type="file" id="addImg" name="addImg" class="item-fileInput">
+							<label for="addImg">+</label>
+							<input type="hidden" name="addImgName">
+						</div>
+						<input type="button" value="add_hTag" onclick="add_imgBox();">
+					</li>
+					<li><textarea id="summernote" name="content"></textarea></li>
+					<li>
+						<input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}">
+						<button type="submit">등록</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</main>
+</html>
+

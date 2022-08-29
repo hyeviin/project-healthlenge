@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 public class FileData {
 
 	protected String url;
-	protected String name;
+	protected String orgName;
+	protected String newName;
 	protected long size;
 	protected int num;
 

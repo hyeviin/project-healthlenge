@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 	<head>
 	    <link rel="stylesheet" href="/css/sign/signin.css">
 	    <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -31,7 +31,7 @@ th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
 				<div th:if="${param.errMsg}" class="error">
 					<span>*이메일 또는 비밀번호를 확인하세요</span>
 				</div>
-				<form action="/common/login" method="post"> 
+				<form action="/login" method="post"> 
 					<ul>
 						<li class="flex column">
 							<div>이메일</div>
@@ -41,7 +41,7 @@ th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
 							<div>비밀번호</div>
 							<input type="password" name="pass" placeholder="사용할 비밀번호를 입력하세요.">
 						</li>
-						<li class="flex column pass-find"><a href="/common/pass-find">비밀번호 찾기</a></li>
+						<li class="flex column pass-find"><a href="/member/pass-find">비밀번호 찾기</a></li>
 						<li>
 							<input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}" >
 							<button type="submit">시작하기</button>

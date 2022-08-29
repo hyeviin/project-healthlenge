@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-th:replace="~{/layout/my/myCommon :: layout(~{::head}, ~{::div})}">
+th:replace="~{layout/my/layout1 :: layout(~{::head}, ~{::div})}">
 <head>
 	<title>마이페이지</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -15,19 +15,18 @@ th:replace="~{/layout/my/myCommon :: layout(~{::head}, ~{::div})}">
 		</section>
 		<section id="index-info" class="flex column between">
 			<div>
-				<p th:text="${memInfo.nickName}">username</p>
-				<p th:if="${memInfo.info}">[[${memInfo.info}]]</p>
-				<p th:unless="${memInfo.info}">한 줄 소개가 없습니다.</p>
+				<p sec:authentication="name">username</p>
+				<p>한 줄 소개가 없습니다.</p>
 			</div>
 			<div class="flex around">
-			<!--  	<div>
+				<div>
 					<p>예치금</p>
 					<p>30,000</p>
 				</div>
 				<div>
 					<p>상금</p>
 					<p>2,000</p>
-				</div> -->
+				</div>
 				<div>
 					<p>포인트</p>
 					<p>154,113</p>
@@ -35,6 +34,6 @@ th:replace="~{/layout/my/myCommon :: layout(~{::head}, ~{::div})}">
 			</div>
 		</section>
 	</div>
-	<a href="/my/infoChagne" class="index-text">정보변경</a>
+	<a href="/my/info/chagne" class="index-text">정보변경</a>
 </div>
 </html>

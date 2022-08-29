@@ -1,13 +1,1 @@
 @charset "UTF-8";
-
-/* 관리자 메뉴 크기 설정 */
-#top-menu {
-	width: 570px;
-}
-
-/* main */
-main {
-	width: 1200px;
-	margin: 0 auto;
-	padding: 2em;
-}

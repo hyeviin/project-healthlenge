@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<ul class="imgs flex">
+	<li th:each="dto : ${events}" class="imgs-li">
+		<div class="bg" th:style="|background-image: url(${dto.url+dto.orgName});|"></div>
+	</li>
+</ul>
+<script type="text/javascript">
+var myTimeout;
+
+$(function(){
+	//화면최소화시 타이머 스탑
+	document.addEventListener("visibilitychange", function() {
+		  console.log(document.visibilityState);
+		  var state=document.visibilityState;
+		  if(state=="hidden"){
+			  stop();
+		  }else if(state=="visible"){
+			  myTimeout = setTimeout(start, 3000);//타이머로 시작
+		  }
+	});
+	//비주얼 이미지에 마우스 올라갈때
+	$("#visual>ul").hover( stop ,function(){myTimeout = setTimeout(start, 3000);});
+	
+	//처음로딩시 타이머로 이미지 시작
+	myTimeout = setTimeout(start, 3000);
+	
+});
+
+var speed=1000;
+
+function stop(){
+	clearTimeout(myTimeout);
+	console.log("timmer stop");
+}
+function start(){
+	next();
+	myTimeout = setTimeout(start, 3000);
+	console.log("timmer start");
+}
+
+function next(){
+	var first=$(".imgs-li:first-child");
+	var last=$(".imgs-li:last-child");
+	//$(".vimg-wrap").css("margin-left", "-100%");
+	$(".imgs").animate({marginLeft:"-800px"}, speed, function(){
+		last.after(first);//첫번째이미지->맨뒤로 보내기
+		$(".imgs").css("margin-left", 0);
+	});
+	
+}
+</script>
+</html>

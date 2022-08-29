@@ -9,8 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import khv.healthlenge.domain.dto.member.MemberInfoDTO;
 import khv.healthlenge.domain.dto.member.MemberInsertDTO;
 import khv.healthlenge.domain.dto.member.PassChangeDTO;
+import khv.healthlenge.domain.dto.member.PassFindDTO;
+import khv.healthlenge.domain.entity.delivery.Delivery;
+import khv.healthlenge.domain.entity.delivery.DeliveryRepository;
 import khv.healthlenge.domain.entity.member.Member;
 import khv.healthlenge.domain.entity.member.MemberRepository;
 import khv.healthlenge.security.MemberRole;
@@ -25,22 +29,23 @@ public class MemberServiceProcess implements MemberService {
 	private MemberRepository repository;
 	
 	@Autowired
+	private DeliveryRepository deliveryRepository;
+	
+	@Autowired
 	PasswordEncoder pe;
 	
-	//회원가입
 	@Override
 	public String save(MemberInsertDTO dto, HttpServletRequest request) {
 		dto.passEncode(pe);
 		dto.setUserIp(request.getRemoteAddr());//프록시서버(카페24) 또는 로드 밸런스를 통해 서버에 접속한경우 127.0.0.1
 		
 		Member member= dto.toMember().addRole(MemberRole.USER);
-		
 		//user롤 적용회원가입
 		repository.save(member);
-		return "redirect:/commom/signin";
+		return "redirect:/login";
 	}
 	
-	//입력받은 이메일이 DB에 있는지 확인
+	//비밀번호 찾기 -> 아이디가 있는지 먼저 확인합니다!
 	@Override
 	public String findPass(String email, Model model) {
 		Optional<Member> result= repository.findByEmail(email);
@@ -50,23 +55,35 @@ public class MemberServiceProcess implements MemberService {
 			return "/member/pass-find";
 		}
 		
-		System.out.println("model에 저장된 회원번호가 잘 있는데???왜??? " + repository.findByEmail(email).map(PassChangeDTO::new).get().getMno());
 
-		model.addAttribute("member", repository.findByEmail(email).map(PassChangeDTO::new).get());
+		model.addAttribute("member", repository.findByEmail(email).map(PassFindDTO::new).get());
 		return "sign/changePass";
 	}
-
-	//비밀번호 재설정
+	
+	//새로운 비밀번호 받아서 새로 저장하기
 	@Override
-	public String changePass(long mno, String pass, Model model) {
-		Member entity= repository.findById(mno).orElseThrow();
+	public String changePass(PassChangeDTO dto, Model model) {
+		Member entity= repository.findById(dto.getMemberNo()).orElseThrow();
 
-		PassChangeDTO dto= repository.findById(mno).map(PassChangeDTO::new).get();
-		dto.setPass(pass);
-		
 		entity.changePass(dto.passEncode(pe));
 		repository.save(entity);
 		
+		return "redirect:/login";
+	}
+
+	@Override
+	public String myInfoPage(String name, Model model) {
+		model.addAttribute("memberInfo", repository.findByEmail(name).map(MemberInfoDTO::new).get());
+		return "/my/info/info";
+	}
+
+	//삭제삭제!!!!!!
+	@Override
+	public String delMember(boolean isCheck, long mno) {
+
+		Optional<Member> result= repository.findById(mno);
+			
+		repository.save(result.get().updateIsDeleted(isCheck));
 		return "redirect:/login";
 	}
 

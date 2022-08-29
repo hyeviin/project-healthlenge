@@ -1,7 +1,9 @@
 package khv.healthlenge.domain.entity.member;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,15 +16,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import khv.healthlenge.domain.dto.member.MemberUpdateDTO;
+import org.hibernate.annotations.DynamicUpdate;
+
 import khv.healthlenge.domain.dto.member.PassChangeDTO;
-import khv.healthlenge.domain.entity.BaseTimeEntity;
-import khv.healthlenge.domain.entity.feed.Feed;
+import khv.healthlenge.domain.entity.challenge.Challenge;
+import khv.healthlenge.domain.entity.notice.Notice;
 import khv.healthlenge.security.MemberRole;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+//@DynamicInsert//insert시 Entity에 null데이터는 퀄리에 적용시키지 않아요
+@DynamicUpdate//실제로 update처리하는 컬럼만 쿼리에 적용된다.
 
 @Builder
 @AllArgsConstructor
@@ -30,74 +37,58 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-public class Member extends BaseTimeEntity {
+public class Member extends BaseTimeEntity{
 	
-	//회원 번호
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long mno;
 	
-	//회원 이메일 (로그인시 아이디)
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	//회원 비밀번호
 	@Column(nullable = false)
 	private String pass;
 	
-	//비밀번호 수정시 사용할 메서드
 	public Member changePass(PassChangeDTO dto) {
 		this.pass= dto.getPass();
 		return this;
 	}
 	
-	//회원 닉네임
-	@Column
-	private String nickname;
-
-	//회원 한 줄 소개
-	private String info;
-	//변경시 사용할 메서드
-	public Member changeInfo(MemberUpdateDTO dto) {
-		//만약 입력된 값이 있다면 수정합니다.
-		if(!(dto.getNickName()==null)) {
-			this.nickname= dto.getNickName();
-		}
-		if(!(dto.getInfo()==null)) {
-			this.info= dto.getInfo();
-		}
-		//입력된 값이 없다면 원래 정보 리턴
-		return this;
-	}
+	@Column(nullable = false)
+	private String name;
 	
-	//회원 ip
 	@Column(nullable = false)
 	private String userIp;
 	
-	//회원 탈퇴여부: default:false 정상회원 true:탈퇴신청한회원
-	private boolean isDeleted;
-	
+	private boolean isDeleted;//default:false 탈퇴여부 //true:탈퇴신청한회원
 	public Member updateIsDeleted(boolean deleted) {
 		this.isDeleted= deleted;
 		return this;
 	}
 	
-	//소셜 회원여부: ture:소셜로 가입함, false: 소셜로 가입하지 않음
-	private boolean isSocial;
+	private boolean isSocial;//ture:소셜로 가입함, false: 소셜로 가입하지 않음
 	
 	@Builder.Default
 	@Enumerated(EnumType.STRING)//DB에 저장시 문자열로 저장할때 적용
 	@ElementCollection(fetch = FetchType.EAGER)
-	private Set<MemberRole> roleSet= new HashSet<>();
+	private Set<MemberRole> roleSet=new HashSet<>();
 	
 	public Member addRole(MemberRole role) {
 		roleSet.add(role);
 		return this;
 	}
+	public Member removeRole(MemberRole role) {
+		roleSet.remove(role);
+		return this;
+	}
 	
-	//작성한 피드친구들
+	//게시글과 연관관계 설정합니다.
 	@Builder.Default
 	@OneToMany(mappedBy = "member")
-	private Set<Feed> feeds= new HashSet<>();
-
+	private List<Challenge> challengeList= new Vector<Challenge>();
+	
+	//공지사항과 연관관계 설정합니다.
+	@OneToMany(mappedBy = "member")
+	private List<Notice> noticeList= new Vector<Notice>();
+	
 }

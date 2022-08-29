@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
 	<title>챌린지</title>
     <link rel="stylesheet" href="/css/board/index.css">
@@ -57,7 +57,7 @@ th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
 								<div class="board-items flex column center acenter">
 									<div class="bitem-img" th:style="|background-image: url(${dto.url+dto.orgName});|">
 										<span class="status">[[${dto.status}]]</span>
-										<span style="display: none;">[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]</span>
+										<span style="display: none;">[[${#dates.format(#dates.createNow(), 'yyyyMMdd')}]]</span>
 									</div>
 									<div class="text">
 										<p class="title">[[${dto.title}]]</p>

@@ -14,17 +14,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService{
-	
 	//DaoAuthenticationProvider. 
+	
 	//DAO : jpa-Repository
+	
 	private final MemberRepository repository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		//username -> login페이지에서 입력한 email 정보입니다.
-
+		// username -> login페이지에서 입력한 email 정보입니다.
+		//System.out.println(username);
 		//db에 회원존재하는지 체크 존재하면 UserDetails 으로 세팅해서 리턴
-		Optional<Member> result= repository.findByEmailAndIsDeletedAndIsSocial(username, false, false);
+		Optional<Member> result=repository.findByEmailAndIsDeletedAndIsSocial(username, false, false);
 		//isDeleted : true는 탈퇴회원, false가 정상회원
 		
 		if(result.isEmpty()) {
@@ -32,6 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		}
 		
 		//UserDetails 타입으로 리턴 User활용		
+		//System.out.println(">>>>>Role read");
 		return new CustomUserDetails(result.get());
 	}
 

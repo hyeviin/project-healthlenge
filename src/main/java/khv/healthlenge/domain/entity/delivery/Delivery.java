@@ -1,12 +1,16 @@
 package khv.healthlenge.domain.entity.delivery;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import khv.healthlenge.domain.entity.member.Member;
 import khv.healthlenge.domain.entity.order.Orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

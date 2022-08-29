@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/my/layout1 :: layout(~{::head}, ~{::div})}">
+<head>
+	<title>마이페이지</title>
+    <link rel="stylesheet" href="/css/my/index.css">
+    <script type="text/javascript">
+		$(function(){
+			getFaq();
+			$(".faq-menu>li").click(getFaq);
+		});
+		function getFaq(){
+			var divno= $(this).index() < 0 ? 0 : $(this).index();
+			console.log(divno);
+			var url= "/customer/" + divno;
+			
+			$.get(url, //url
+					function(result){//성공시 실행함
+						$("#data").html(result);
+			});
+		}
+	</script>
+</head>
+<div class="faq-content">
+	<div id="data">
+		faqEntity의 ajax 결과를 보여줍니다.
+	</div>
+</div>
+</html>

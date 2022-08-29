@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="blist-box flex">
+	<div th:each="dto : ${challengelist}" class="flex around">
+		<a th:href="|/common/challenge/user/${dto.boardNo}|">
+			<div class="board-items flex column center acenter">
+				<div class="bitem-img" th:style="|background-image: url(${dto.url+dto.orgName});|">
+					<span class="status">[[${dto.status}]]</span>
+				</div>
+				<div class="text">
+					<p class="title">[[${dto.title}]]</p>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+</html>

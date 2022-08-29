@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<table>
+	<thead>
+		<tr>
+			<th>구분</th>
+			<th>질문</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="dto:${faqlist}">
+			<td>[[${dto.div.title}]]</td>
+					<td>[[${dto.question}]]</td>
+				</tr>
+			</tbody>
+		</table>
+</html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 	<head>
 	    <link rel="stylesheet" href="/css/sign/signup.css">
 	    <script th:inline="javascript" src="/js/mailSend.js"></script>
@@ -27,7 +27,7 @@ th:replace="~{layout/headerFooter :: layout(~{::head}, ~{::main})}">
 			</section>
 			<section id="email-signup">
 				<h2 class="flex acenter">이메일 회원가입</h2>
-				<form action="/common/signup" method="post"> 
+				<form action="/member/signup" method="post"> 
 					<ul>
 						<li class="flex column">
 							<div>닉네임</div>

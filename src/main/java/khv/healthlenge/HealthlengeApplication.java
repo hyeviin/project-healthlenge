@@ -17,5 +17,5 @@ public class HealthlengeApplication {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 }

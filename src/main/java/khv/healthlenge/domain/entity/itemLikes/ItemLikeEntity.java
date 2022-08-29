@@ -10,9 +10,10 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import khv.healthlenge.domain.entity.BaseTimeEntity;
-import khv.healthlenge.domain.entity.item.Item;
+import khv.healthlenge.domain.entity.items.Item;
+import khv.healthlenge.domain.entity.member.BaseTimeEntity;
 import khv.healthlenge.domain.entity.member.Member;
+import khv.healthlenge.domain.entity.order.Orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

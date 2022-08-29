@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{layout/my/layout1 :: layout(~{::head}, ~{::div})}">
+<head>
+	<title>마이페이지</title>
+    <link rel="stylesheet" href="/css/my/orders.css">
+    <script type="text/javascript" src="/js/givePoint.js"></script>
+</head>
+<div class="faq-content">
+	<div class="flex column order-mainBox" th:each="list : ${orderList}">
+		<div class="flex between order-title">
+			<span>[[${list.createdDate}]]</span>
+			<a href="#">상세보기</a>
+		</div>
+		<div>
+			<div class="flex around order-imgbox">
+				<img class="order-img" alt="상품이미지" th:src="${list.iFileUrl}">
+				<div class="flex column center">
+					<p>[[${list.iName}]]</p>
+					<div>
+						<span th:text="|${list.iPrice}원|"></span>
+						<span th:text="|(${list.iCount}개)|"></span>
+					</div>
+				</div>
+			</div>
+			<p id="point-price" style="display: none;">[[${list.iPrice}]]</p>
+			<p id="point-ono" style="display: none;" th:text="${list.ono}"></p>
+			<button id="btn-buyDone">구매결정</button>
+		</div>
+	</div>
+</div>
+</html>

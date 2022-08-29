@@ -1,0 +1,67 @@
+@charset "UTF-8";
+main {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/*카테고리 사이즈*/
+#category-items {
+	margin: 2em 0;
+}
+
+/*카테고리 아이콘*/
+#category-items div {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#category-items li {
+    align-items: center;
+    margin-right: 15px;
+}
+
+
+/* 아래 내용물 css */
+#board-list__box {
+	border-top: 1px solid #E5E3E4;
+	padding-top: 1.5em;
+}
+.blist-box {
+	width: 900px;
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	margin: 0 auto;
+}
+
+.blist-contain > p{
+	font-size: 2.5em;
+    font-weight: 900;
+}
+
+.bitem-img {
+	width: 220px;
+    height: 220px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px;
+}
+
+.status {
+	position: absolute;
+    bottom: 5%;
+    background-color: white;
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    left: 5%;
+    font-weight: 800;
+}
+
+.text {
+	font-size: 1.2rem;
+}

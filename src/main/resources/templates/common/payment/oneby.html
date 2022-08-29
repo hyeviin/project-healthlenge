@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+	<head>
+		<title>챌린지 관리</title>
+		<!-- 결제친구 -->	    
+	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	    <!-- 결제친구 js -->
+	    <script type="text/javascript" src="/js/payment.js"></script>
+	    <link rel="stylesheet" href="/css/store/detail.css">
+	</head>
+	<main>
+		<h1>메인컨텐츠</h1>
+		<div class="wrap">
+			<section class="table-tilte flex between">
+				<h1>상품 구매하기</h1>
+				<a href="/store">취소하기</a>
+			</section>
+		</div>
+	</main>
+</html>
+

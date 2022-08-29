@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div class="flex end" id="allCheck-box">
+	<span>전체 선택</span>
+	<!-- <input type="checkbox" class="all-check"> -->
+</div>
+<div class="faq-content">
+	<div class="flex column order-mainBox" th:each="dto : ${itemlist}">
+		<div class="flex between order-title">
+			<span>[[|No.${dto.ilNo}|]]</span>
+			<input type="checkbox" class="select-item" checked="checked">
+			<input type="hidden" class="sale-price" th:value="${dto.salePrice}">
+			<input type="hidden" class="tot-price" th:value="${dto.price}">
+		</div>
+		<div>
+			<div class="flex around order-imgbox">
+				<img class="order-img" alt="상품이미지" th:src="${dto.fileUrl}" style="height: 150px; width: 150px;">
+				<div class="flex column center box">
+					<p>[[${dto.name}]]</p>
+					<div>
+						<span>가 격:</span>
+						<span class="price" th:text="${dto.price}"></span>
+						<span>원</span>
+					</div>
+					<div>
+						<span>할 인 율:</span>
+						<span class="sale" th:text="${dto.sale}"></span>
+						<span>%</span>
+					</div>
+					<div>
+						<label>수량: </label>
+						<input class="ea" type="number" max="10" th:value="${dto.ea}">
+						<p class="totPrice" th:text="|${dto.totalPrice}원|"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<section id="pay-box" class="">
+	<div class="final-price flex acenter">
+		<div>
+			<p>선택상품 금액</p>
+			<span id="">0</span>원
+		</div>
+		<span>+</span>
+		<div>
+			<p>총 배송비</p>
+			<span>0</span>원
+		</div>
+		<span>+</span>
+		<div>
+			<p>할인예상금액</p>
+			<span>0</span>원
+		</div>
+		<div>
+			<span>주문금액</span>
+			<span class="tot__price"></span>
+		</div>
+	</div>
+	<div>
+		<button>주문하기</button>
+	</div>
+</section>
+<script type="text/javascript">
+	//이건 바구니의 최종 결제금액 계산!
+	$(".select-item").change(function(){
+		calc();
+	});
+	//수량변경시 작동
+	$(".ea").change(function(){
+		let pay= $(this).val() * $(this).parents(".box").find(".price").text();
+			
+		$(this).next().text(pay);
+		calc();
+	});
+	//3자리마다 , 적용
+	function comma(num){
+		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+	}
+	
+	function calc(){
+		let selectItems=$(".select-item:checked");
+		let tot= 0;
+		let sale= 0;
+			
+		for(i= 0; i<selectItems.length; i++){
+			/* tot += $(selectItems[i]).siblings("price").val(); */
+			tot += parseInt($(selectItems[i]).parents(".order-mainBox").find(".totPrice").text());
+		}
+		console.log(">>>>>" + tot);
+		$(".tot__price").text(tot);
+	}
+	$(function(){
+		calc();
+		
+	});
+</script>
+</html>
+
+
